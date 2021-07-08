@@ -13,11 +13,11 @@ def distribution_by_days(quantity, days):
 def regenerate_distribution(left_quantity, left_days, distribution):
     distribution = eval(distribution)
     b = distribution[-left_days:]
-    now = sum(b)
-    if left_quantity > now:
+    if left_quantity > sum(b):
         for i in range(len(b)):
-            b[i] += math.floor((left_quantity - now) / left_days)
-        b[-1] += left_quantity - sum(b)
+            b[i] += math.floor((left_quantity - (sum(b))) / left_days)
+        if left_quantity - sum(b) > 0:
+            b[-1] += left_quantity - sum(b)
     return b
 
 
